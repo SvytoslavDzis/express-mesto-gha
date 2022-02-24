@@ -5,8 +5,8 @@ const { getUsers, getUserById, createUser, updateUser, updateUserAvatar } = requ
 userRouter.get('/users', getUsers);
 userRouter.get('/users/:userId', getUserById);
 userRouter.post('/users', express.json(), createUser);
-userRouter.patch('/me', express.json(), updateUser);
-userRouter.patch('/me/avatar', express.json(), updateUserAvatar);
+userRouter.patch('users/me', express.json(), updateUser);
+userRouter.patch('users/me/avatar', express.json(), updateUserAvatar);
 
 
 module.exports = userRouter;
