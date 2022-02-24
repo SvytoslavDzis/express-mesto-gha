@@ -72,10 +72,9 @@ exports.updateUserAvatar  = async (req, res) => {
       res.status(404).send({message: 'Пользователь с указанным _id не найден.'});
     }
   }catch(err){
-    if(err.name === 'ValidatorError') {
-      res.status(400).send({ message: 'Переданы некорректные данные при обновлении аватара.' });
-    } else {
-      res.status(500).send({ message: 'Ошибка по умолчанию.' });
+    if(err.name === 'ValidationError') {
+      return res.status(400).send({ message: 'Переданы некорректные данные при обновлении аватара.' });
     }
+    return res.status(500).send({ message: 'Ошибка по умолчанию.' });
   }
 }
