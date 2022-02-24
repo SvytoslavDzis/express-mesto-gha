@@ -54,7 +54,7 @@ exports.updateUser  = async (req, res) => {
       res.status(404).send({message: 'Пользователь с указанным _id не найден.'});
     }
   }catch(err){
-    if(err.name === 'ValidatorError') {
+    if(err.name === 'CastError') {
       res.status(400).send({ message: 'Переданы некорректные данные при обновлении профиля.' });
     } else {
       res.status(500).send({ message: 'Ошибка по умолчанию.' });
@@ -72,7 +72,7 @@ exports.updateUserAvatar  = async (req, res) => {
       res.status(404).send({message: 'Пользователь с указанным _id не найден.'});
     }
   }catch(err){
-    if(err.name === 'ValidationError') {
+    if(err.name === 'CastError') {
       return res.status(400).send({ message: 'Переданы некорректные данные при обновлении аватара.' });
     }
     return res.status(500).send({ message: 'Ошибка по умолчанию.' });
