@@ -32,12 +32,13 @@ exports.deleteCard = async (req, res) => {
     if (deletedCard) {
       await Card.findByIdAndRemove(req.params.cardId);
       res.status(200).send({deletedCard});
+    } else {
+      res.status(404).send({message: 'Карточка с указанным _id не найдена.'});
     }
   }
   catch(err){
-    console.log(err)
-    if (err.name = 'CastError') {
-      res.status(404).send({message: 'Карточка с указанным _id не найдена.'});
+    if (err.name === 'CastError') {
+      res.status(400).send({message: 'Карточка с указанным _id не найдена.'});
     }
   }
 }
