@@ -7,7 +7,7 @@ const { PORT = 3000 } = process.env;
 
 app.use((req, res, next) => {
   req.user = {
-    _id: '6216615805c252bc9d89048e'
+    _id: '6217bdcbd61cb79d2accce18'
   };
 
   next();
@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 
 app.use(router)
 
-mongoose.connect('mongodb://localhost:27017/mydb', {
+mongoose.connect('mongodb://localhost:27017/mestodb', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
