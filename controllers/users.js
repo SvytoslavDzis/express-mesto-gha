@@ -64,8 +64,7 @@ exports.updateUser  = async (req, res) => {
 
 exports.updateUserAvatar  = async (req, res) => {
   try {
-    const { avatar } = req.body;
-    const updatedUser = await User.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
+    const updatedUser = await User.findByIdAndUpdate(req.user._id, { name: req.body.name, about: req.body.about }, { new: true, runValidators: true })
     if (updatedUser) {
       res.status(200).send(updatedUser);
     }else{
