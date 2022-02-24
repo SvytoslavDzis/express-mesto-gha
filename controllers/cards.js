@@ -37,7 +37,7 @@ exports.deleteCard = async (req, res) => {
   catch(err){
     console.log(err)
     if (err.name = 'CastError') {
-      res.status(404).send({message: 'Карточка с указанным _id не найдена.'});
+      res.status(400).send({message: 'Карточка с указанным _id не найдена.'});
     }
   }
 }
