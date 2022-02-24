@@ -46,11 +46,12 @@ exports.createUser = async (req, res) => {
 
 exports.updateUser  = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.user._id, { name: req.body.name, about: req.body.about }, { new: true, runValidators: true })
+    const { name, about } = req.body;
+    const user = await User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
     if (user) {
-      res.status(200).send(user);
+      return res.status(200).send(user);
     }else{
-      res.status(404).send({message: 'Пользователь с указанным _id не найден.'});
+      return res.status(404).send({message: 'Пользователь с указанным _id не найден.'});
     }
   }catch(err){
     if(err.name === 'ValidatorError') {
