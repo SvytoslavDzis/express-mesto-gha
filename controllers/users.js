@@ -49,9 +49,9 @@ exports.updateUser  = async (req, res) => {
     const { name, about } = req.body;
     const user = await User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
     if (user) {
-      return res.status(200).send(user);
+      res.status(200).send(user);
     }else{
-      return res.status(404).send({message: 'Пользователь с указанным _id не найден.'});
+      res.status(404).send({message: 'Пользователь с указанным _id не найден.'});
     }
   }catch(err){
     if(err.name === 'ValidatorError') {
@@ -64,8 +64,7 @@ exports.updateUser  = async (req, res) => {
 
 exports.updateUserAvatar  = async (req, res) => {
   try {
-    const { avatar } = req.body;
-    const updatedUser = await User.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
+    const updatedUser = await User.findByIdAndUpdate(req.user._id, { name: avatar.req.body }, { new: true, runValidators: true })
     if (updatedUser) {
       res.status(200).send(updatedUser);
     }else{
