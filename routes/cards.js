@@ -5,7 +5,7 @@ const { getCards, createCard, deleteCard, likeCard, dislikeCard } = require('../
 cardRouter.get('/cards', getCards);
 cardRouter.post('/cards', express.json(), createCard);
 cardRouter.delete('/cards/:cardId', express.json(), deleteCard);
-cardRouter.put('/:cardId/likes', express.json(), likeCard);
-cardRouter.delete('/:cardId/likes', express.json(), dislikeCard);
+cardRouter.put('/cards/:cardId/likes', express.json(), likeCard);
+cardRouter.delete('/cards/:cardId/likes', express.json(), dislikeCard);
 
 module.exports = cardRouter;
