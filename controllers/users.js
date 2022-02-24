@@ -20,7 +20,7 @@ exports.getUserById = async(req, res) =>{
       res.status(404).send({message: 'Пользователь по указанному _id не найден.'});
     }
   }catch(err){
-    if (err.name == 'ValidatorError') {
+    if (err.name = 'ValidatorError') {
       res.status(400).send({message: 'Некорректно переданы данные пользователя'})
     } else {
       res.status(500).send('Ошибка по умолчанию.');
@@ -36,7 +36,7 @@ exports.createUser = async (req, res) => {
       res.status(201).send(user);
     }
   }catch(err){
-    if (err.name == 'ValidatorError') {
+    if (err.name = 'ValidatorError') {
       res.status(400).send({message: 'Переданы некорректные данные при создании пользователя.'})
     } else {
       res.status(500).send({message: 'Ошибка по умолчанию.'})
@@ -54,7 +54,7 @@ exports.updateUser  = async (req, res) => {
       res.status(404).send({message: 'Пользователь с указанным _id не найден.'});
     }
   }catch(err){
-    if(err.name == 'ValidatorError') {
+    if(err.name = 'ValidatorError') {
       res.status(400).send({ message: 'Переданы некорректные данные при обновлении профиля.' });
     } else {
       res.status(500).send({ message: 'Ошибка по умолчанию.' });
@@ -72,7 +72,7 @@ exports.updateUserAvatar  = async (req, res) => {
       res.status(404).send({message: 'Пользователь с указанным _id не найден.'});
     }
   }catch(err){
-    if(err.name === 'ValidatorError') {
+    if(err.name = 'ValidatorError') {
       return res.status(400).send({ message: 'Переданы некорректные данные при обновлении аватара.' });
     }
     return res.status(500).send({ message: 'Ошибка по умолчанию.' });
