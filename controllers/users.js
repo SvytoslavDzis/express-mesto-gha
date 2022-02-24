@@ -46,8 +46,7 @@ exports.createUser = async (req, res) => {
 
 exports.updateUser  = async (req, res) => {
   try {
-    const { name, about } = req.body;
-    const user = await User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
+    const user = await User.findByIdAndUpdate(req.user._id, { name: req.body.name, about: req.body.about }, { new: true, runValidators: true })
     if (user) {
       res.status(200).send(user);
     }else{
