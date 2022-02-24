@@ -20,7 +20,7 @@ exports.getUserById = async(req, res) =>{
       res.status(404).send({message: 'Пользователь по указанному _id не найден.'});
     }
   }catch(err){
-    if (err.name === 'ValidationError') {
+    if (err.name === 'CastError') {
       res.status(400).send({message: 'Некорректно переданы данные пользователя'})
     } else {
       res.status(500).send('Ошибка по умолчанию.');
