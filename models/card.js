@@ -1,30 +1,31 @@
 const mongoose = require('mongoose');
 
 const cardSchema = new mongoose.Schema({
-  //name — имя пользователя, строка от 2 до 30 символов, обязательное поле;
-  name:{
+  // name — имя пользователя, строка от 2 до 30 символов, обязательное поле;
+  name: {
     type: String,
     minlength: 2,
     maxlength: 30,
-    required: true
+    required: true,
   },
-  //link — ссылка на картинку, строка, обязательно поле.
-  link:{
+  // link — ссылка на картинку, строка, обязательно поле.
+  link: {
     type: String,
-    required: true
+    required: true,
   },
-  //owner — ссылка на модель автора карточки, тип ObjectId, обязательное поле;
-  owner:{
+  // owner — ссылка на модель автора карточки, тип ObjectId, обязательное поле;
+  owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
-    required: true
+    required: true,
   },
-  //likes — список лайкнувших пост пользователей, массив ObjectId, по умолчанию — пустой массив (поле default);
+  // likes — список лайкнувших пост пользователей, массив ObjectId,
+  // по умолчанию — пустой массив (поле default);
   likes: {
     type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
     default: [],
   },
-  //createdAt — дата создания, тип Date, значение по умолчанию Date.now.
+  // createdAt — дата создания, тип Date, значение по умолчанию Date.now.
   createdAt: {
     type: Date,
     default: Date.now,
