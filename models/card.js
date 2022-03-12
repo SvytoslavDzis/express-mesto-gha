@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 
 const cardSchema = new mongoose.Schema({
   // name — имя пользователя, строка от 2 до 30 символов, обязательное поле;
@@ -14,8 +13,8 @@ const cardSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator(v) {
-        return /https?:\/\/(w{3}\.)?[a-z0-9]{1,}([a-z-._~:/?#@!$&'()*+,;=]*)/g.test(v);
+      validator(link) {
+        return /https?:\/\/(w{3}\.)?[a-z0-9]{1,}([a-z-._~:/?#@!$&'()*+,;=]*)/g.test(link);
       },
     },
   },

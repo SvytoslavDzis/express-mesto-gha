@@ -33,8 +33,8 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-  //Добавление свойства unique со значением true.
-  //Так в базе не окажется несколько пользователей с одинаковой почтой.
+    // Добавление свойства unique со значением true.
+    // Так в базе не окажется несколько пользователей с одинаковой почтой.
     unique: true,
     validate: {
       validator(v) {
@@ -45,24 +45,23 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minlength: 8,
     select: false,
-  }
+  },
 });
 
 userSchema.statics.findUserByCredentials = async function (email, password) {
   // попытаемся найти пользователя по почте
   const user = await this.findOne({ email }).select('+password');
-    // не нашёлся — отклоняем промис
-    if (!user) {
-      return Promise.reject(new Error('Неправильные почта или пароль'));
-    }
-    // нашёлся — сравниваем хеши
-    const matched = await bcrypt.compare(password, user.password);
-    if (!matched){ // отклоняем промис
-      return Promise.reject(new Error('Неправильные почта или пароль'));
-    }
-    return user;
+  // не нашёлся — отклоняем промис
+  if (!user) {
+    return Promise.reject(new Error('Неправильные почта или пароль'));
+  }
+  // нашёлся — сравниваем хеши
+  const matched = await bcrypt.compare(password, user.password);
+  if (!matched) { // отклоняем промис
+    return Promise.reject(new Error('Неправильные почта или пароль'));
+  }
+  return user;
 };
 
 // создаём модель user и экспортируем её

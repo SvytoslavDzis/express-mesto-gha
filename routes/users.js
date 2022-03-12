@@ -1,5 +1,5 @@
 const express = require('express');
-const { validateUserId, validateUserAvatar, validateUserUpdate } = require('../validation/validation')
+const { validateUserId, validateUserAvatar, validateUserUpdate } = require('../validation/validation');
 
 const userRouter = express.Router();
 const {
@@ -13,10 +13,3 @@ userRouter.patch('/users/me', validateUserUpdate, updateUser);
 userRouter.patch('/users/me/avatar', validateUserAvatar, updateUserAvatar);
 
 module.exports = userRouter;
-
-
-
-
-
-
-
